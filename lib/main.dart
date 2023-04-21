@@ -1,12 +1,15 @@
 import 'package:dio_app/presentation/get_page.dart';
+import 'package:dio_app/route/app_navigation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AppRouter _appRouter = AppRouter();
+
+  MyApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -16,8 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const GetPage(),
+      onGenerateRoute: _appRouter.onGenerateRoute,
     );
   }
 }
-

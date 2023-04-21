@@ -1,0 +1,66 @@
+Index: lib/data/model/put_response.dart
+===================================================================
+diff --git a/lib/data/model/put_response.dart b/lib/data/model/put_response.dart
+deleted file mode 100644
+--- a/lib/data/model/put_response.dart	
++++ /dev/null	
+@@ -1,57 +0,0 @@
+-import 'dart:convert';
+-
+-/// id : 1
+-/// name : "Akash"
+-/// eamil : "abc@gmail.com"
+-
+-PutResponse postResponseFromJson(String str) =>
+-    PutResponse.fromJson(json.decode(str));
+-
+-String putResponseToJson(PutResponse data) => json.encode(data.toJson());
+-
+-class PutResponse {
+-  PutResponse({
+-    num? id,
+-    String? name,
+-    String? eamil,
+-  }) {
+-    _id = id;
+-    _name = name;
+-    _eamil = eamil;
+-  }
+-
+-  PutResponse.fromJson(dynamic json) {
+-    _id = json['id'];
+-    _name = json['name'];
+-    _eamil = json['eamil'];
+-  }
+-
+-  num? _id;
+-  String? _name;
+-  String? _eamil;
+-
+-  PutResponse copyWith({
+-    num? id,
+-    String? name,
+-    String? eamil,
+-  }) =>
+-      PutResponse(
+-        id: id ?? _id,
+-        name: name ?? _name,
+-        eamil: eamil ?? _eamil,
+-      );
+-
+-  num? get id => _id;
+-
+-  String? get name => _name;
+-
+-  String? get eamil => _eamil;
+-
+-  Map<String, dynamic> toJson() {
+-    final map = <String, dynamic>{};
+-    map['id'] = _id;
+-    map['name'] = _name;
+-    map['eamil'] = _eamil;
+-    return map;
+-  }
+-}
+diff --git a/lib/data/model/put_model.dart b/lib/data/model/put_model.dart
+deleted file mode 100644
