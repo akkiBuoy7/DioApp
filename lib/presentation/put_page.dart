@@ -17,7 +17,6 @@ class PutPage extends StatefulWidget {
 }
 
 class _PutPageState extends State<PutPage> {
-
   var _nameController = TextEditingController();
   var _emailController = TextEditingController();
   PutResponse? responseModel;
@@ -35,7 +34,6 @@ class _PutPageState extends State<PutPage> {
         actions: [
           IconButton(
             onPressed: () {
-
               Navigator.pushNamed(context, ProjectConstants.FOURTH_SCREEN);
             },
             icon: Icon(Icons.next_plan_outlined),
@@ -60,9 +58,11 @@ class _PutPageState extends State<PutPage> {
                 decoration: InputDecoration(hintText: "Enter email"),
               ),
             ),
-            ElevatedButton(onPressed: () {
-              _putData();
-            }, child: Text("Put")),
+            ElevatedButton(
+                onPressed: () {
+                  _putData();
+                },
+                child: Text("Put")),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
@@ -77,8 +77,8 @@ class _PutPageState extends State<PutPage> {
   }
 
   _putData() async {
-
-    PutModel model = PutModel(name: _nameController.text.toString(),
+    PutModel model = PutModel(
+        name: _nameController.text.toString(),
         email: _emailController.text.toString());
 
     final map = <String, dynamic>{};
@@ -86,10 +86,12 @@ class _PutPageState extends State<PutPage> {
     map['email'] = model.email;
 
     String _url = "https://jsonplaceholder.typicode.com/posts/1";
-    var response = await PutRepository().putData(_url,map);
+    var response = await PutRepository().putData(_url, map);
 
-    setState(() {
-      responseModel = PutResponse.fromJson(json.decode(response.toString()));
-    });
+    if (response != null) {
+      setState(() {
+        responseModel = PutResponse.fromJson(json.decode(response.toString()));
+      });
+    }
   }
 }

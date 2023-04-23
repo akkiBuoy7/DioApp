@@ -6,8 +6,11 @@ import '../provider/network_provider.dart';
 
 class DownloadRepository{
   downloadData(String url,String path,ValueChanged<double> callback) async{
-    var progress = 0.0;
-    NetworkProvider networkProvider = NetworkProvider();
-     await networkProvider.downloadData(url,path,callback);
+    try{
+      NetworkProvider networkProvider = NetworkProvider();
+      await networkProvider.downloadData(url,path,callback);
+    }catch(e){
+      print(e);
+    }
   }
 }

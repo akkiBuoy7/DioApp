@@ -88,12 +88,14 @@ class _PatchPageState extends State<PatchPage> {
     String _url = "https://jsonplaceholder.typicode.com/posts/1";
     var response = await GetRepository().getData(_url);
 
-    setState(() {
-      getModel = GetModel.fromJson(json.decode(response.toString()));
-      title = getModel?.title;
-      body = getModel?.body!;
-      id = getModel?.id.toString();
-    });
+    if (response != null) {
+      setState(() {
+        getModel = GetModel.fromJson(json.decode(response.toString()));
+        title = getModel?.title;
+        body = getModel?.body!;
+        id = getModel?.id.toString();
+      });
+    }
   }
 
   _patchData() async {

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../../util/extensions.dart';
 import '../service/network_status_service.dart';
 import 'package:provider/provider.dart';
 
@@ -17,17 +18,9 @@ class NetworkAwareWidget extends StatelessWidget {
     if (networkStatus == NetworkStatus.Online) {
       return onlineChild;
     } else {
-      _showToastMessage("Offline");
+      showToastMessage("Offline");
       return offlineChild;
     }
   }
 
-  void _showToastMessage(String message){
-    Fluttertoast.showToast(
-        msg: message,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1
-    );
-  }
 }

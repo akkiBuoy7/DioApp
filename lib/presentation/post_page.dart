@@ -85,9 +85,11 @@ class _PostPageState extends State<PostPage> {
 
     String _url = "https://jsonplaceholder.typicode.com/posts";
     var response = await PostRepository().postData(_url,map);
-    var item = PostResponse.fromJson(json.decode(response.toString()));
-    setState(() {
-      _reponseId = item.id.toString();
-    });
+    if(response!=null){
+      var item = PostResponse.fromJson(json.decode(response.toString()));
+      setState(() {
+        _reponseId = item.id.toString();
+      });
+    }
   }
 }
